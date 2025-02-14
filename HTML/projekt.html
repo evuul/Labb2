@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personlig Information</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="../img/profilbild.jpg" alt="Profilbild av Alexander Ek" class="profile-pic">
+            <h1 class="name">Alexander Ek</h1>
+            <p class="subtitle">Systemutvecklare | Student 2024-2026</p>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <a href="index.html" class="link-home">Hem</a>
+        <a href="personlig-info.html" class="link-personlig-info">Personlig Information</a>
+        <a href="fardigheter.html" class="link-fardigheter">Färdigheter</a>
+        <a href="cv.html" class="link-cv">CV</a>
+        <a href="projekt.html" class="link-projekt">Projekt</a>
+        <a href="kontakt.html" class="link-kontakt">Kontakt</a>
+    </nav>
+
+    <section id="projekt" class="container">
+        <h2>Projekt</h2>
+        <p>Senaste projekt jag arbetat på:</p>
+        
+        <ul class="project-list">
+            <li class="project-container">
+                <h3>Skolsystem</h3>
+                <p>
+                    Ett komplett system för att visa information om vilka elever som går på en skola samt vilka lärare som är anställda. 
+                    Användaren kan även lägga till ny personal eller elev.
+                </p>
+                <a href="#modal-skolsystem" class="btn">Mer info</a>
+            </li>
+
+            <li class="project-container">
+                <h3>Banksystem</h3>
+                <p>
+                    Ett projekt där vi byggde ett simpelt banksystem för att kunna logga in på en specifik användare och se sina bankkonton. 
+                    Användaren kan även överföra pengar mellan konton.
+                </p>
+                <a href="#modal-banksystem" class="btn">Mer info</a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Modal för Skolsystem -->
+    <div id="modal-skolsystem" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <h3>Skolsystem</h3>
+            <p>Detta projekt utvecklades för att effektivt hantera skoladministration. Systemet låter skolpersonal lägga till och hantera elever och lärare.</p>
+        </div>
+    </div>
+
+    <!-- Modal för Banksystem -->
+    <div id="modal-banksystem" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <h3>Banksystem</h3>
+            <p>En bankapplikation där användare kan logga in, se sina bankkonton och överföra pengar mellan dem.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Alexander Ek. Alla rättigheter förbehållna.</p>
+    </footer>
+
+    <script src="../JS/script.js"></script>
+</body>
+</html>

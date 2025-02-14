@@ -1,0 +1,206 @@
+/* Grundstil */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #cfd8e3;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Minsta höjd för att fylla hela skärmen */
+}
+
+/* Header */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 250px;
+    background-color: #2d2c30;
+    color: white;
+    padding: 20px 5%;
+    border-bottom: 2px solid #959ba1b3;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #5d87b1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 25px #5d87b1;
+}
+
+.name {
+    font-size: 2em;
+    font-weight: bold;
+    background: linear-gradient(90deg, #9ccde0, #3d58df);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Navigering */
+.nav {
+    background-color: #262525d1;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav a {
+    color: rgb(243, 243, 243);
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav a:hover, 
+.nav a.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 10%;
+}
+
+/* Huvudinnehåll */
+.container {
+    text-align: center;
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Gör att footern hamnar längst ner */
+}
+
+/* Projektlista */
+.project-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Skills-lista */
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 0;
+}
+
+.skills-list li {
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.skills-list li:hover {
+    transform: scale(1.1);
+    color: #61f32c;
+}
+
+.skills-list i {
+    color: #007bff;
+    font-size: 1.5em;
+}
+
+.skills-list li:hover i {
+    color: #61f32c;
+}
+
+.project-container {
+    background-color: rgba(9, 9, 9, 0.887);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.project-container h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #ffffff;
+}
+
+.project-container p {
+    font-size: 1.1em;
+    color: #ffffff;
+}
+
+/* Modal-stil */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal:target {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    text-decoration: none;
+    color: black;
+}
+
+/* Knappstil */
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+/* Footer-stil */
+.footer {
+    text-align: center;
+    padding: 2px;
+    background-color: #333;
+    color: white;
+    width: 100%;
+    margin-top: auto; /* Ser till att footern alltid ligger längst ner */
+}
