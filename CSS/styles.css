@@ -48,7 +48,7 @@ body {
 
 /* Navigering */
 .nav {
-    background-color: #262525d1;
+    background: linear-gradient(90deg, #9ccde0, #3d58df); /* Samma gradient som namnet */
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -56,18 +56,25 @@ body {
 }
 
 .nav a {
-    color: rgb(243, 243, 243);
+    font-size: 1.2em;
+    font-weight: bold;
     text-decoration: none;
     padding: 10px;
+    background: linear-gradient(90deg, #ffffff, #b3d4fc); /* Ljus gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav a:hover, 
 .nav a.active {
-    background-color: #007bff;
-    color: white;
-    border-radius: 10%;
+    background: linear-gradient(90deg, #ff8c00, #ff0080); /* En annan gradient för aktiv flik */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    position: relative;
 }
+
 
 /* Huvudinnehåll */
 .container {
