@@ -106,33 +106,103 @@ body {
 
 .skills-list li {
     font-size: 1.2em;
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    background: linear-gradient(90deg, #5c679a, #0b0b0b);
+    /*Gradientfärg*/-webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .skills-list li:hover {
-    transform: scale(1.1);
-    color: #61f32c;
+    transform: scale(1.15);
+    -webkit-transform: scale(1.15);
+    -moz-transform: scale(1.15);
+    -ms-transform: scale(1.15);
+    -o-transform: scale(1.15);
 }
 
 .skills-list i {
-    color: #007bff;
+    background: linear-gradient(90deg, #148fe1, #ff0080);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 1.5em;
 }
 
-.skills-list li:hover i {
-    color: #61f32c;
+/* Tar bort punktlistor */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
+/* Grundstil för länkar */
+ul li a {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    background: linear-gradient(90deg, #00f93a, #0025e0); /* Samma gradient som navigeringen */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: text-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    display: inline-block;
+    padding: 10px;
+}
+
+/* Hover-effekt: Länken lyser upp och växer lite */
+ul li a:hover {
+    transform: scale(1.1);
+}
+
+/* Justering för projektsektionen */
+#projekt.container {
+    max-width: 100%; /* Tar bort den smala begränsningen */
+    background-color: transparent; /* Gör bakgrunden genomskinlig om det behövs */
+    box-shadow: none; /* Tar bort onödig skugga */
+    padding: 20px; /* Se till att det finns lite luft runt */
+}
+
+/* Säkerställ att projektlistan blir flexbox */
+#projekt .project-list {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrerar projekten */
+    gap: 20px; /* Mellanrum mellan projekten */
+}
+
+/* Justering för projektboxarna */
 .project-container {
+    flex: 1 1 calc(33.33% - 40px); /* Gör att de ligger i rad på större skärmar */
     background-color: rgba(9, 9, 9, 0.887);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 300px; /* Ser till att de inte blir för små */
+    max-width: 400px; /* Förhindrar att de blir för breda */
+    text-align: center;
+}
+.project-container img {
+    width: 100%; /* Gör att bilden fyller hela bredden av kortet */
+    height: auto; /* Behåller proportionerna */
+    max-height: 200px; /* Sätter en maxhöjd så de inte blir för stora */
+    object-fit: cover; /* Ser till att bilden beskärs snyggt istället för att bli utdragen */
+    border-radius: 8px; /* Ger rundade hörn för en mjukare look */
+}
+
+/* Responsiv design för mobil (mindre än 768px) */
+@media (max-width: 768px) {
+    .project-list {
+        flex-direction: column; /* Ändrar till en kolumn på mindre skärmar */
+        align-items: center; /* Centrerar projekten */
+    }
+
+    .project-container {
+        width: 100%; /* Projekten tar hela bredden */
+        flex-basis: auto;
+    }
 }
 
 .project-container:hover {
@@ -150,6 +220,9 @@ body {
     font-size: 1.1em;
     color: #ffffff;
 }
+
+
+
 
 /* Modal-stil */
 .modal {
@@ -192,14 +265,17 @@ body {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background: #007bff;
+    background: linear-gradient(90deg, #148fe1, #ff0080);
     color: white;
+    -webkit-text-fill-color: white;
     text-decoration: none;
     border-radius: 5px;
+    border: 2px solid white; /* Lägg till en vit kantlinje */
+    font-weight: bold; /* Gör texten tydligare */
 }
 
 .btn:hover {
-    background: #0056b3;
+    background: #9dce5d;
 }
 
 /* Footer-stil */
