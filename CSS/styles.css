@@ -1,4 +1,6 @@
-/* Grundstil */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -21,6 +23,28 @@ body {
     color: white;
     padding: 20px 5%;
     border-bottom: 2px solid #959ba1b3;
+}
+
+@media (max-width: 768px) {
+    .header {
+        min-height: 180px; /* Mindre höjd på mobil */
+        padding: 15px 5%;
+    }
+    .name {
+        font-size: 1.5em; /* Minska textstorleken */
+    }
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        gap: 5px;
+        padding: 5px;
+    }
 }
 
 .profile-pic {
@@ -46,6 +70,9 @@ body {
     animation: fadeIn 1.5s ease-in-out;
 }
 
+.subtitle{
+    font-family: "Bebas Neue", serif;
+}
 /* Navigering */
 .nav {
     background: linear-gradient(90deg, #9ccde0, #3d58df); /* Samma gradient som namnet */
@@ -79,13 +106,14 @@ body {
 /* Huvudinnehåll */
 .container {
     text-align: center;
-    max-width: 500px;
+    width: 90%; /* Anpassar sig till skärmens bredd */
+    max-width: 600px; /* Lite större för bättre läsbarhet */
     margin: 20px auto;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-    flex-grow: 1; /* Gör att footern hamnar längst ner */
+    flex-grow: 1;
 }
 
 /* Projektlista */
@@ -221,9 +249,6 @@ ul li a:hover {
     color: #ffffff;
 }
 
-
-
-
 /* Modal-stil */
 .modal {
     position: fixed;
@@ -276,6 +301,11 @@ ul li a:hover {
 
 .btn:hover {
     background: #9dce5d;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Footer-stil */
