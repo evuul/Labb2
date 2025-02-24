@@ -102,6 +102,23 @@ body {
     position: relative;
 }
 
+.nav a.active {
+    background: linear-gradient(90deg, #ff8c00, #ff0080);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .nav a.active {
+        background: #ff8c00a6; /* Solid färg för tydlighet */
+        -webkit-text-fill-color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+    }
+}
+
 
 /* Huvudinnehåll */
 .container {
@@ -230,6 +247,18 @@ ul li a:hover {
     .project-container {
         width: 100%; /* Projekten tar hela bredden */
         flex-basis: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-list {
+        flex-direction: column;
+        align-items: center; /* Centrerar projekten */
+    }
+    
+    .project-container {
+        width: 90%; /* Gör korten lite smalare */
+        max-width: 350px; /* Ser till att de inte blir för breda */
     }
 }
 
