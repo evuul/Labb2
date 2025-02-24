@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -73,9 +72,10 @@ body {
 .subtitle{
     font-family: "Bebas Neue", serif;
 }
+
 /* Navigering */
 .nav {
-    background: linear-gradient(90deg, #9ccde0, #3d58df); /* Samma gradient som namnet */
+    background: linear-gradient(90deg, #9ccde0, #3d58df);
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -87,7 +87,7 @@ body {
     font-weight: bold;
     text-decoration: none;
     padding: 10px;
-    background: linear-gradient(90deg, #ffffff, #b3d4fc); /* Ljus gradient */
+    background: linear-gradient(90deg, #ffffff, #b3d4fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -95,30 +95,31 @@ body {
 
 .nav a:hover, 
 .nav a.active {
-    background: linear-gradient(90deg, #ff8c00, #ff0080); /* En annan gradient för aktiv flik */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: bold;
-    position: relative;
-}
-
-.nav a.active {
     background: linear-gradient(90deg, #ff8c00, #ff0080);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
-    position: relative;
 }
 
 @media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+    }
+    
+    .nav a {
+        display: block;
+        padding: 10px;
+    }
+
     .nav a.active {
-        background: #ff8c00a6; /* Solid färg för tydlighet */
+        background: #ff8c00a6;
         -webkit-text-fill-color: white;
         padding: 8px 15px;
         border-radius: 5px;
     }
 }
-
 
 /* Huvudinnehåll */
 .container {
@@ -235,19 +236,6 @@ ul li a:hover {
     max-height: 200px; /* Sätter en maxhöjd så de inte blir för stora */
     object-fit: cover; /* Ser till att bilden beskärs snyggt istället för att bli utdragen */
     border-radius: 8px; /* Ger rundade hörn för en mjukare look */
-}
-
-/* Responsiv design för mobil (mindre än 768px) */
-@media (max-width: 768px) {
-    .project-list {
-        flex-direction: column; /* Ändrar till en kolumn på mindre skärmar */
-        align-items: center; /* Centrerar projekten */
-    }
-
-    .project-container {
-        width: 100%; /* Projekten tar hela bredden */
-        flex-basis: auto;
-    }
 }
 
 @media (max-width: 768px) {
