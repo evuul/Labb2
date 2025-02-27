@@ -1,0 +1,18 @@
+{
+    "namn": "Alexander Ek",
+    "titel": "Systemutvecklare | Student 2024-2026",
+    "profilbild": "../img/profilbild.jpg",
+    "om_mig": "Jag är en passionerad systemutvecklare och student som strävar efter att förbättra mina tekniska färdigheter och skapa lösningar som kan ha en positiv inverkan. Jag har erfarenhet inom flera programmeringsspråk och teknologier, och jag älskar att lösa komplexa problem.",
+    "utbildning": {
+      "skola": "Campus Varberg",
+      "period": "2024 - 2026",
+      "beskrivning": "Under denna tid har jag lärt mig flera teknologier såsom C#, CSS, HTML och SQL. Jag är också involverad i praktiska projekt för att tillämpa mina kunskaper i verkliga scenarier."
+    },
+    "arbetslivserfarenhet": [
+      {
+        "företag": "Alexander Ek AB",
+        "roll": "Ägare",
+        "beskrivning": "Jag arbetade som PT ONLINE."
+      }
+    ]
+  }
