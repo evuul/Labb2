@@ -14,25 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../JS/cv.json")
+    fetch("../DATA/cv-data.json")
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById("cv-container");
 
             container.innerHTML = `
-                <header class="header">
-                    <div class="header-content">
-                        <img src="${data.profilbild}" alt="Profilbild av ${data.namn}" class="profile-pic">
-                        <h1 class="name">${data.namn}</h1>
-                        <p class="subtitle">${data.titel}</p>
-                    </div>
-                </header>
-
-                <section>
-                    <h2>Om mig</h2>
-                    <p>${data.om_mig}</p>
-                </section>
-
                 <section>
                     <h2>Utbildning</h2>
                     <p><strong>${data.utbildning.skola}</strong> (${data.utbildning.period})</p>
