@@ -83,3 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
             loadingText.textContent = "Kunde inte ladda GitHub-projekt.";
         });
 });
+
+document.querySelector(".profile-pic").addEventListener("click", function() {
+    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+    alert("🎵 You just got Rickrolled! 😂");
+});
