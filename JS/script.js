@@ -37,3 +37,50 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Fel vid inläsning av CV:", error));
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const username = "evuul"; // Ditt GitHub-användarnamn
+    const apiUrl = `https://api.github.com/users/${username}/repos`;
+
+    const projectList = document.getElementById("project-list");
+    const loadingText = document.getElementById("loading");
+
+    // Visa laddningsmeddelande
+    loadingText.textContent = "Laddar projekt från GitHub...";
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP-fel! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(repos => {
+            loadingText.style.display = "none"; // Dölj laddningstexten
+
+            if (repos.length === 0) {
+                projectList.innerHTML = "<p>Inga publika GitHub-projekt hittades.</p>";
+                return;
+            }
+
+            repos.forEach(repo => {
+                const projectItem = document.createElement("li");
+                projectItem.classList.add("project-container");
+
+                // Standardbild om ingen finns
+                const imageUrl = "../img/default-project.jpg"; 
+
+                projectItem.innerHTML = `
+                    <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+                    <p>${repo.description || "Ingen beskrivning tillgänglig."}</p>
+                    <a href="${repo.html_url}" class="btn" target="_blank">Mer info</a>
+                `;
+
+                projectList.appendChild(projectItem);
+            });
+        })
+        .catch(error => {
+            console.error("Fel vid hämtning av GitHub-repos:", error);
+            loadingText.textContent = "Kunde inte ladda GitHub-projekt.";
+        });
+});

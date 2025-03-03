@@ -238,6 +238,31 @@ ul li a:hover {
     border-radius: 8px; /* Ger rundade hörn för en mjukare look */
 }
 
+.project-container h3{
+    margin-top: 10px;
+    font-size: 1.5em;
+    color: #ffffff;
+    
+}
+
+#project-list h3 {
+    color: white;
+}
+
+#project-list .project-container h3 {
+    color: white;
+}
+
+/* Projektlistan ska använda flexbox */
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrerar projekten */
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
 @media (max-width: 768px) {
     .project-list {
         flex-direction: column;
@@ -334,3 +359,4 @@ img {
     width: 100%;
     margin-top: auto; /* Ser till att footern alltid ligger längst ner */
 }
+
