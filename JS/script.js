@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const username = "evuul"; // Ditt GitHub-användarnamn
+    const username = "evuul";
     const apiUrl = `https://api.github.com/users/${username}/repos`;
 
     const projectList = document.getElementById("project-list");
@@ -71,10 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 const imageUrl = "../img/default-project.jpg"; 
 
                 projectItem.innerHTML = `
-                    <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+                    <h3>${repo.name}</h3>
                     <p>${repo.description || "Ingen beskrivning tillgänglig."}</p>
-                    <a href="${repo.html_url}" class="btn" target="_blank">Mer info</a>
-                `;
+                    <a href="${repo.html_url}" class ="btn" target="_blank">Mer info</a>`;
 
                 projectList.appendChild(projectItem);
             });
