@@ -86,5 +86,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.querySelector(".profile-pic").addEventListener("click", function() {
     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
-    alert("🎵 You just got Rickrolled! 😂");
+    alert("🎵 Du har precis blivit Rickrollad! 😂");
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key.toLowerCase() === "s") {
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "red";
+        alert("Boo! Sidan är nu i Spooky Mode!");
+    }
 });
