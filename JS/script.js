@@ -13,31 +13,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    fetch("../DATA/cv-data.json")
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById("cv-container");
+document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        const response = await fetch("../DATA/cv-data.json");
+        const data = await response.json();
 
-            container.innerHTML = `
-                <section>
-                    <h2>Utbildning</h2>
-                    <p><strong>${data.utbildning.skola}</strong> (${data.utbildning.period})</p>
-                    <p>${data.utbildning.beskrivning}</p>
-                </section>
+        const container = document.getElementById("cv-container");
 
-                <section>
-                    <h2>Arbetslivserfarenhet</h2>
-                    ${data.arbetslivserfarenhet.map(job => `
-                        <p><strong>${job.företag}</strong> - ${job.roll}</p>
-                        <p>${job.beskrivning}</p>
-                    `).join("")}
-                </section>
-            `;
-        })
-        .catch(error => console.error("Fel vid inläsning av CV:", error));
+        container.innerHTML = `
+            <section>
+                <h2>Utbildning</h2>
+                <p><strong>${data.utbildning.skola}</strong> (${data.utbildning.period})</p>
+                <p>${data.utbildning.beskrivning}</p>
+            </section>
+
+            <section>
+                <h2>Arbetslivserfarenhet</h2>
+                ${data.arbetslivserfarenhet.map(job => `
+                    <p><strong>${job.företag}</strong> - ${job.roll}</p>
+                    <p>${job.beskrivning}</p>
+                `).join("")}
+            </section>
+        `;
+    } catch (error) {
+        console.error("Fel vid inläsning av CV:", error);
+    }
 });
-
 document.addEventListener("DOMContentLoaded", function () {
     const username = "evuul";
     const apiUrl = `https://api.github.com/users/${username}/repos`;
