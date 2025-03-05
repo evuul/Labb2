@@ -16,8 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         const response = await fetch("../DATA/cv-data.json");
-        const data = await response.json();
+        if (!response.ok) throw new Error(`HTTP-fel! Status: ${response.status}`);
 
+        const data = await response.json();
         const container = document.getElementById("cv-container");
 
         container.innerHTML = `
@@ -39,7 +40,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.error("Fel vid inläsning av CV:", error);
     }
 });
-document.addEventListener("DOMContentLoaded", function () {
+
+document.addEventListener("DOMContentLoaded", async function () {
     const username = "evuul";
     const apiUrl = `https://api.github.com/users/${username}/repos`;
 
@@ -49,51 +51,69 @@ document.addEventListener("DOMContentLoaded", function () {
     // Visa laddningsmeddelande
     loadingText.textContent = "Laddar projekt från GitHub...";
 
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP-fel! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(repos => {
-            loadingText.style.display = "none"; // Dölj laddningstexten
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`HTTP-fel! Status: ${response.status}`);
 
-            if (repos.length === 0) {
-                projectList.innerHTML = "<p>Inga publika GitHub-projekt hittades.</p>";
-                return;
-            }
+        const repos = await response.json();
+        loadingText.style.display = "none"; // Dölj laddningstexten
 
-            repos.forEach(repo => {
-                const projectItem = document.createElement("li");
-                projectItem.classList.add("project-container");
+        if (repos.length === 0) {
+            projectList.innerHTML = "<p>Inga publika GitHub-projekt hittades.</p>";
+            return;
+        }
 
-                // Standardbild om ingen finns
-                const imageUrl = "../img/default-project.jpg"; 
+        repos.forEach(repo => {
+            const projectItem = document.createElement("li");
+            projectItem.classList.add("project-container");
 
-                projectItem.innerHTML = `
-                    <h3>${repo.name}</h3>
-                    <p>${repo.description || "Ingen beskrivning tillgänglig."}</p>
-                    <a href="${repo.html_url}" class ="btn" target="_blank">Mer info</a>`;
+            projectItem.innerHTML = `
+                <h3>${repo.name}</h3>
+                <p>${repo.description || "Ingen beskrivning tillgänglig."}</p>
+                <a href="${repo.html_url}" class="btn" target="_blank">Mer info</a>`;
 
-                projectList.appendChild(projectItem);
-            });
-        })
-        .catch(error => {
-            console.error("Fel vid hämtning av GitHub-repos:", error);
-            loadingText.textContent = "Kunde inte ladda GitHub-projekt.";
+            projectList.appendChild(projectItem);
         });
+
+    } catch (error) {
+        console.error("Fel vid hämtning av GitHub-repos:", error);
+        loadingText.textContent = "Kunde inte ladda GitHub-projekt.";
+    }
 });
 
-document.querySelector(".profile-pic").addEventListener("click", function() {
+// Rickroll på profilbilden
+document.querySelector(".profile-pic").addEventListener("click", function () {
     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
     alert("🎵 Du har precis blivit Rickrollad! 😂");
 });
 
-document.addEventListener("keydown", function(event) {
-    if (event.key.toLowerCase() === "s") {
-        document.body.style.backgroundColor = "black";
-        document.body.style.color = "red";
-        alert("Boo! Sidan är nu i Spooky Mode!");
+let inputSequence = ""; // Sparar tangenttryck
+const secretCode = "1337";
+
+document.addEventListener("keydown", function (event) {
+    inputSequence += event.key; // Lägger till senaste tangenttrycket
+    inputSequence = inputSequence.slice(-secretCode.length); // Håller bara de senaste 4 tecknen
+
+    if (inputSequence === secretCode) {
+        activateSpookyMode();
     }
 });
+
+// Spooky mode funktion
+function activateSpookyMode() {
+    document.body.classList.add("spooky-mode");
+    alert("Boo! 🎃 Sidan är nu i Spooky Mode!");
+    addGhosts();
+    playGhostSound();
+}
+
+// Lägg till spöken
+function addGhosts() {
+    for (let i = 0; i < 6; i++) {
+        let ghost = document.createElement("div");
+        ghost.classList.add("ghost");
+        ghost.style.top = Math.random() * 100 + "vh";
+        ghost.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(ghost);
+    }
+}

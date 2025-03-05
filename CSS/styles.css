@@ -360,3 +360,55 @@ img {
     margin-top: auto; /* Ser till att footern alltid ligger längst ner */
 }
 
+/* Spooky Mode bakgrund */
+.spooky-mode {
+    background-color: black;
+    color: red;
+}
+
+/* Spöken */
+.ghost {
+    position: fixed;
+    width: 50px;
+    height: 60px;
+    background: white;
+    border-radius: 50% 50% 0 0;
+    animation: float 3s ease-in-out infinite;
+}
+
+.ghost::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background: white;
+    bottom: -15px;
+    border-radius: 50%;
+}
+
+.ghost::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+    top: 20px;
+    left: 15px;
+    box-shadow: 20px 0 black;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+/* Svävande effekt */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
