@@ -1,19 +1,26 @@
+// Vänta tills hela sidan har laddats
 document.addEventListener("DOMContentLoaded", function () {
-    // Hämta alla navigeringslänkar
-    const links = document.querySelectorAll(".nav a");
-
-    // Hämta nuvarande filnamn utan domän
-    const currentPage = window.location.pathname.split("/").pop();
-
-    // Loopa igenom länkar och markera den aktiva sidan
-    links.forEach(link => {
-        if (link.getAttribute("href") === currentPage) {
-            link.classList.add("active"); // Lägg till aktiv klass
-        }
-    });
+    handleNavHighlight();
+    fetchCVData();
+    fetchGitHubProjects();
+    setupRickRollListener();
+    setupSpookyModeListener();
 });
 
-document.addEventListener("DOMContentLoaded", async function () {
+// Markera aktuell länk i navigeringen
+function handleNavHighlight() {
+    const links = document.querySelectorAll(".nav a");
+    const currentPage = window.location.pathname.split("/").pop();
+
+    links.forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
+    });
+}
+
+// Hämta och visa CV-data från JSON
+async function fetchCVData() {
     try {
         const response = await fetch("../DATA/cv-data.json");
         if (!response.ok) throw new Error(`HTTP-fel! Status: ${response.status}`);
@@ -27,7 +34,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                 <p><strong>${data.utbildning.skola}</strong> (${data.utbildning.period})</p>
                 <p>${data.utbildning.beskrivning}</p>
             </section>
-
             <section>
                 <h2>Arbetslivserfarenhet</h2>
                 ${data.arbetslivserfarenhet.map(job => `
@@ -39,16 +45,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     } catch (error) {
         console.error("Fel vid inläsning av CV:", error);
     }
-});
+}
 
-document.addEventListener("DOMContentLoaded", async function () {
+// Hämta och visa GitHub-projekt
+async function fetchGitHubProjects() {
     const username = "evuul";
     const apiUrl = `https://api.github.com/users/${username}/repos`;
-
     const projectList = document.getElementById("project-list");
     const loadingText = document.getElementById("loading");
 
-    // Visa laddningsmeddelande
     loadingText.textContent = "Laddar projekt från GitHub...";
 
     try {
@@ -63,7 +68,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-        repos.forEach(repo => {
+        repos.forEach(repo => { // skapar lista med projekten
             const projectItem = document.createElement("li");
             projectItem.classList.add("project-container");
 
@@ -74,40 +79,71 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             projectList.appendChild(projectItem);
         });
-
     } catch (error) {
         console.error("Fel vid hämtning av GitHub-repos:", error);
         loadingText.textContent = "Kunde inte ladda GitHub-projekt.";
     }
-});
+}
 
-// Rickroll på profilbilden
-document.querySelector(".profile-pic").addEventListener("click", function () {
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
-    alert("🎵 Du har precis blivit Rickrollad! 😂");
-});
+// Lyssna på tangenttryck för Rickroll
+function setupRickRollListener() {
+    let inputSequence = "";
+    const secretCode = "1337";
 
-let inputSequence = ""; // Sparar tangenttryck
-const secretCode = "1337";
+    document.addEventListener("keydown", function (event) {
+        inputSequence += event.key;
+        inputSequence = inputSequence.slice(-secretCode.length);
 
-document.addEventListener("keydown", function (event) {
-    inputSequence += event.key; // Lägger till senaste tangenttrycket
-    inputSequence = inputSequence.slice(-secretCode.length); // Håller bara de senaste 4 tecknen
+        if (inputSequence === secretCode) {
+            triggerRickRoll(); // kör rick-roll funktionen
+        }
+    });
+}
 
-    if (inputSequence === secretCode) {
-        activateSpookyMode();
+// Funktion för att visa Rickroll
+function triggerRickRoll() {
+    document.querySelector(".Rick-Roll").style.display = "flex";
+
+    let audio = document.getElementById("sound");
+    if (audio) {
+        audio.volume = 0.1;
+        audio.currentTime = 0;
+        audio.play();
+        audio.loop = true;
     }
+}
+
+// Stäng Rickroll-modal vid klick på "X"
+document.querySelector(".close").addEventListener("click", function () {
+    closeRickRoll();
 });
 
-// Spooky mode funktion
+// Funktion för att stänga Rickroll
+function closeRickRoll() {
+    document.querySelector(".Rick-Roll").style.display = "none";
+
+    let audio = document.getElementById("sound");
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+}
+
+// Spooky mode på profilbilden
+function setupSpookyModeListener() {
+    document.querySelector(".profile-pic").addEventListener("click", function () {
+        activateSpookyMode();
+    });
+}
+
+// Funktion för att aktivera spooky mode
 function activateSpookyMode() {
     document.body.classList.add("spooky-mode");
     alert("Boo! 🎃 Sidan är nu i Spooky Mode!");
     addGhosts();
-    playGhostSound();
 }
 
-// Lägg till spöken
+// Lägg till spöken på skärmen
 function addGhosts() {
     for (let i = 0; i < 6; i++) {
         let ghost = document.createElement("div");

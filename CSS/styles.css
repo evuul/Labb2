@@ -360,6 +360,43 @@ img {
     margin-top: auto; /* Ser till att footern alltid ligger längst ner */
 }
 
+/* Rickroll-popup styling */
+.Rick-Roll {
+    display: none; /* Gömd från start */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Mörk bakgrund */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.Rick-Roll-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.Rick-Roll img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Stängningsknappen */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color: black;
+}
+
 /* Spooky Mode bakgrund */
 .spooky-mode {
     background-color: black;
@@ -374,6 +411,7 @@ img {
     background: white;
     border-radius: 50% 50% 0 0;
     animation: float 3s ease-in-out infinite;
+
 }
 
 .ghost::before {
