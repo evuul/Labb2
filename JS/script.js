@@ -81,7 +81,7 @@ async function fetchGitHubProjects() {
 
                 projectList.appendChild(projectItem);
             });
-        }, 3000); // 3000 ms = 3 sekunder
+        }, 3000);
     } catch (error) {
         console.error("Fel vid hämtning av GitHub-repos:", error);
         loadingText.textContent = "Kunde inte ladda GitHub-projekt.";
