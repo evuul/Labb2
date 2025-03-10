@@ -37,7 +37,7 @@ async function fetchCVData() {
             <section>
                 <h2>Arbetslivserfarenhet</h2>
                 ${data.arbetslivserfarenhet.map(job => `
-                    <p><strong>${job.företag}</strong> - ${job.roll}</p>
+                    <p><strong>${job.företag}</strong> - ${job.roll} (${job.period || "Period ej angiven"})</p>
                     <p>${job.beskrivning}</p>
                 `).join("")}
             </section>
@@ -61,24 +61,27 @@ async function fetchGitHubProjects() {
         if (!response.ok) throw new Error(`HTTP-fel! Status: ${response.status}`);
 
         const repos = await response.json();
-        loadingText.style.display = "none"; // Dölj laddningstexten
+        // Vänta i 3 sekunder innan innehållet visas
+        setTimeout(() => {
+            loadingText.style.display = "none"; // Dölj laddningstexten
 
-        if (repos.length === 0) {
-            projectList.innerHTML = "<p>Inga publika GitHub-projekt hittades.</p>";
-            return;
-        }
+            if (repos.length === 0) {
+                projectList.innerHTML = "<p>Inga publika GitHub-projekt hittades.</p>";
+                return;
+            }
 
-        repos.forEach(repo => { // skapar lista med projekten
-            const projectItem = document.createElement("li");
-            projectItem.classList.add("project-container");
+            repos.forEach(repo => {
+                const projectItem = document.createElement("li");
+                projectItem.classList.add("project-container");
 
-            projectItem.innerHTML = `
-                <h3>${repo.name}</h3>
-                <p>${repo.description || "Ingen beskrivning tillgänglig."}</p>
-                <a href="${repo.html_url}" class="btn" target="_blank">Mer info</a>`;
+                projectItem.innerHTML = `
+                    <h3>${repo.name}</h3>
+                    <p>${repo.description || "Ingen beskrivning tillgänglig."}</p>
+                    <a href="${repo.html_url}" class="btn" target="_blank">Mer info</a>`;
 
-            projectList.appendChild(projectItem);
-        });
+                projectList.appendChild(projectItem);
+            });
+        }, 3000); // 3000 ms = 3 sekunder
     } catch (error) {
         console.error("Fel vid hämtning av GitHub-repos:", error);
         loadingText.textContent = "Kunde inte ladda GitHub-projekt.";
